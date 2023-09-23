@@ -2,6 +2,7 @@
 name = "patterns-sys"
 version = "0.1.0"
 edition = "2021"
+workspace = "../"
 
 [profile.dev]
 panic = "abort"
@@ -11,7 +12,7 @@ panic = "abort"
 strip = true
 
 [lib]
-crate-type = ["cdylib", "rlib", "staticlib"]
+crate-type = ["rlib", "staticlib"]
 
 [dependencies.patterns]
 path = "../"

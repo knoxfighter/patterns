@@ -14,7 +14,14 @@ test = false
 doctest = false
 
 [workspace]
-members = [ "./tests" ]
+members = [ "./tests", "./sys" ]
 
 [features]
 second_byte = []
+
+[profile.dev]
+panic = "abort"
+
+[profile.release]
+panic = "abort"
+strip = true

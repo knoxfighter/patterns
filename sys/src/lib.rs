@@ -1,4 +1,11 @@
+#![no_std]
+
 use core::{slice, str::from_utf8};
+
+#[panic_handler]
+fn panic(_info: &core::panic::PanicInfo) -> ! {
+    loop {}
+}
 
 use patterns::Pattern;
 
