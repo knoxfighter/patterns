@@ -24,7 +24,7 @@ use core::{
     cmp::min,
     num::ParseIntError,
     ops::BitAnd,
-    simd::{Mask, Simd, SimdPartialEq, ToBitMask},
+    simd::{cmp::SimdPartialEq, Mask, Simd},
     str::FromStr,
 };
 
@@ -53,7 +53,7 @@ impl<'pattern, 'data: 'cursor, 'cursor> Scanner<'pattern, 'data, 'cursor> {
     #[inline]
     pub fn new(pattern: &'pattern Pattern, data: &'data [u8]) -> Scanner<'pattern, 'data, 'cursor> {
         let align = data.as_ptr().align_offset(BYTES);
-        let align = min(align, BYTES);      // by contract, align_offset may return usize::MAX
+        let align = min(align, BYTES); // by contract, align_offset may return usize::MAX
         Scanner {
             pattern,
             data,
@@ -68,7 +68,7 @@ impl<'pattern, 'data: 'cursor, 'cursor> Scanner<'pattern, 'data, 'cursor> {
 }
 
 /// Match `pattern` against the start of `data` (without SIMD)
-/// 
+///
 /// Assumes that data.len() >= pattern.length
 #[inline(always)]
 fn plain_match(pattern: &Pattern, data: &[u8]) -> bool {
